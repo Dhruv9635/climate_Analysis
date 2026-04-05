@@ -1,23 +1,52 @@
+Climate Change Analysis & Prediction System
+Project Overview
 
-# Climate Change Analysis & Prediction System:
- Project OverviewThis project is an end-to-end Machine Learning and Time-Series forecasting pipeline designed to analyze historical global temperature changes and predict future climate         trends up to the year 2100. It processes raw climate datasets, engineers features (including CO2 proxies and rolling averages), and evaluates four distinct predictive models to find the most   accurate forecaster.
-# Datasets Used:
- The data is sourced from global environmental repositories, including:
- FAOSTAT Environment Temperature Change Data
- Global Land Temperatures By Country/City/State
- Global Weather Repository
-# Project Pipeline (Phases)
-# This project was built step-by-step in 6 main phases:
-  Data Acquisition: Programmatic loading of multiple CSV datasets.
-  Data Cleaning: Melting wide-format data, interpolating missing values, and formatting timelines.
-  Exploratory Data Analysis (EDA): Visualizing historical trends, seasonal decomposition, and calculating feature correlations.
-# Model Training: Training four distinct algorithms on an 80/20 chronological split:
-   SARIMA (Classical Time-Series)
-   Random Forest Regressor (Tree-based)
-   XGBoost Regressor (Gradient Boosting)
-   LSTM Neural Network (Deep Learning
-# Model Evaluation: Comparing models using MAE, RMSE, R² Score, and MAPE to identify the highest performing algorithm.
-# Future Forecasting: Using the optimal model to extrapolate temperature anomalies decade-by-decade until 2100, including 95% confidence intervals.
+This project presents a comprehensive end-to-end machine learning and time-series forecasting framework developed to analyze historical global temperature variations and predict future climate trends up to the year 2100. The system processes large-scale climate datasets, performs advanced feature engineering—including CO₂ proxies and rolling statistical measures—and evaluates multiple predictive models to identify the most accurate forecasting approach.
 
-# Key ResultsEngineered a master timeline showing global temperature anomalies.Evaluated classical statistical models vs. modern deep learning approaches.Generated a continuous forecast to       2100 with marked milestones (2030, 2050, 2075, 2100).
-# All visual outputs are automatically saved to the outputs/plots/ directory.Created as a Final Year Data Science & Machine Learning Project.
+Datasets Utilized
+
+The analytical pipeline integrates data from globally recognized environmental repositories, ensuring both diversity and historical depth:
+
+FAOSTAT Environmental Temperature Change Dataset
+Global Land Temperature Records (Country/City/State-level)
+Global Weather Repository
+Project Pipeline (Core Phases)
+
+The system is developed through a structured six-phase workflow:
+
+1. Data Acquisition:
+Automated ingestion of multiple climate datasets in CSV format from heterogeneous sources.
+
+2. Data Cleaning and Transformation:
+Standardization of data structures through reshaping (wide-to-long format), interpolation of missing values using trend-based methods, and alignment of temporal indices.
+
+3. Exploratory Data Analysis (EDA):
+Comprehensive visualization of historical climate trends, application of seasonal decomposition techniques, and correlation analysis between engineered features.
+
+4. Model Training:
+Implementation of multiple predictive models using an 80/20 chronological split to preserve temporal consistency:
+
+SARIMA (classical statistical time-series model)
+Random Forest Regressor (ensemble-based learning)
+XGBoost Regressor (gradient boosting framework)
+LSTM Neural Network (deep learning for sequential data)
+
+5. Model Evaluation:
+Comparative performance analysis using standardized evaluation metrics:
+
+Mean Absolute Error (MAE)
+Root Mean Squared Error (RMSE)
+Mean Absolute Percentage Error (MAPE)
+R² Score (coefficient of determination)
+
+6. Future Forecasting:
+Deployment of the best-performing model to generate long-term projections of global temperature anomalies up to 2100. Forecast outputs include decade-wise estimates along with 95% confidence intervals to quantify uncertainty.
+
+Key Outcomes
+Developed a unified global timeline illustrating temperature anomaly trends
+Benchmarked traditional statistical models against advanced machine learning and deep learning approaches
+Generated long-range climate forecasts with key milestone projections for 2030, 2050, 2075, and 2100
+Automated the generation and storage of all visual outputs within the outputs/plots/ directory
+Project Context
+
+This system was developed as a Final Year Project in Data Science and Machine Learning, demonstrating the integration of data engineering, statistical modeling, and AI-driven forecasting to address real-world climate challenges.
