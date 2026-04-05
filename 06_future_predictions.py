@@ -9,12 +9,11 @@ from sklearn.preprocessing import StandardScaler
 warnings.filterwarnings("ignore")
 
 def run_phase_6():
-    print("\n" + "="*50)
-    print("\033[1m   PHASE 6: FUTURE PREDICTION (2025–2100)\033[0m")
-    print("="*50)
 
-    metrics_path = "data/processed/model_evaluation_metrics.csv"
-    data_path = "data/processed/climate_cleaned.csv"
+    print("\033[1m   PHASE 6: FUTURE PREDICTION (2025–2100)\033[0m")
+
+    metrics_path = "Datasets Compressed/processed/model_evaluation_metrics.csv"
+    data_path = "Datasets Compressed/processed/climate_cleaned.csv"
     
     if not os.path.exists(metrics_path) or not os.path.exists(data_path):
         print("❌ ERROR: Missing necessary files. Ensure Phases 2, 4, and 5 are complete.")
@@ -113,7 +112,7 @@ def run_phase_6():
     }).set_index('Year')
 
     # 4. Save Future Predictions
-    future_df.to_csv("data/processed/future_predictions_2100.csv")
+    future_df.to_csv("Datasets Compressed/processed/future_predictions_2100.csv")
 
     # 5. Print Decade-by-Decade Summary Table
     print("\n\033[1m--- PREDICTED TEMPERATURE CHANGE BY DECADE ---\033[0m")
@@ -170,9 +169,9 @@ def run_phase_6():
     print(f"\n✅ Future forecast chart saved to {plot_path}")
     print("✅ Future data saved to data/processed/future_predictions_2100.csv")
 
-    print("\n" + "="*50)
+
     print("   PHASE 6 COMPLETE")
-    print("="*50)
+
 
 if __name__ == "__main__":
     run_phase_6()

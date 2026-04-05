@@ -2,9 +2,7 @@ import pandas as pd
 import os
 
 def clean_data(datasets):
-    print("\n" + "="*45)
     print("\033[1m   PHASE 2: DATA CLEANING STARTED\033[0m")
-    print("="*45)
 
     # We will focus on the main temperature change dataset
     key = 'reduced_Environment_Temperature_change_E_All_Data_NOFLAG'
@@ -36,8 +34,8 @@ def clean_data(datasets):
         print(f"✅ Handled {before_nulls - after_nulls} missing values.")
         print(f"✅ Final Cleaned Shape: {df_melted.shape}")
 
-        # 5. Create 'data/processed' folder and save
-        output_dir = "data/processed"
+        # 5. Create 'Datasets Compressed/processed' folder and save
+        output_dir = "Datasets Compressed/processed"
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
 
@@ -47,16 +45,12 @@ def clean_data(datasets):
     else:
         print(f"❌ ERROR: {key} not found. Please run Phase 1 first.")
 
-    print("\n" + "="*45)
     print("   PHASE 2 COMPLETE")
-    print("="*45)
 
 if __name__ == "__main__":
-    # This part runs Phase 1 automatically to get the data for Phase 2
-    try:
-        # run_phase_1 is defined in an earlier cell in this notebook
-        raw_data = run_phase_1()
-        if raw_data:
-            clean_data(raw_data)
-    except Exception as e:
-        print(f"❌ Error during execution: {e}")
+    # Load phase 1 inline (notebook-style execution)
+    print("Loading raw datasets...")
+    exec(open('01_data_collection.py', encoding='utf-8').read())
+    raw_data = run_phase_1()
+    clean_data(raw_data)
+

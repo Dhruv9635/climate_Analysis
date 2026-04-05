@@ -17,11 +17,11 @@ from tensorflow.keras.layers import LSTM, Dense
 warnings.filterwarnings("ignore")
 
 def run_phase_4():
-    print("\n" + "="*50)
-    print("\033[1m   PHASE 4: MODEL TRAINING STARTED\033[0m")
-    print("="*50)
 
-    input_path = "data/processed/global_climate_engineered.csv"
+    print("\033[1m   PHASE 4: MODEL TRAINING STARTED\033[0m")
+
+
+    input_path = "Datasets Compressed/processed/global_climate_engineered.csv"
     
     if not os.path.exists(input_path):
         print(f"❌ ERROR: {input_path} not found. Run Phase 3 first.")
@@ -126,14 +126,14 @@ def run_phase_4():
     # Save predictions to a CSV so Phase 5 can evaluate them easily
     preds_df = pd.DataFrame(predictions)
     preds_df.set_index('Year', inplace=True)
-    preds_df.to_csv("data/processed/model_predictions.csv")
+    preds_df.to_csv("Datasets Compressed/processed/model_predictions.csv")
     
     # Plot Actual vs Predicted for EACH model separately
     models_to_plot = {
-        'SARIMA': ('outputs/plots/04_model1_sarima.png', 'blue'),
-        'RandomForest': ('outputs/plots/04_model2_rf.png', 'green'),
-        'XGBoost': ('outputs/plots/04_model3_xgboost.png', 'red'),
-        'LSTM': ('outputs/plots/04_model4_lstm.png', 'purple')
+        'SARIMA': ('outputs/plots/04_model1_sarima.png', 'purple'),
+        'RandomForest': ('outputs/plots/04_model2_rf.png', 'blue'),
+        'XGBoost': ('outputs/plots/04_model3_xgboost.png', 'green'),
+        'LSTM': ('outputs/plots/04_model4_lstm.png', 'orange')
     }
     
     for model_name, (plot_path, color) in models_to_plot.items():
@@ -160,11 +160,11 @@ def run_phase_4():
         
         print(f"✅ Prediction plot for {model_name} saved to {plot_path}")
 
-    print(f"\n✅ Test predictions saved to data/processed/model_predictions.csv")
+    print(f"\n✅ Test predictions saved to Datasets Compressed/processed/model_predictions.csv")
     
-    print("\n" + "="*50)
+
     print("   PHASE 4 COMPLETE")
-    print("="*50)
+
 
 if __name__ == "__main__":
     run_phase_4()

@@ -2,9 +2,8 @@ import pandas as pd
 import os
 
 def run_phase_1():
-    print("\n" + "="*45)
+
     print("\033[1m   PHASE 1: DATASET ACQUISITION STARTED\033[0m")
-    print("="*45)
 
     datasets = {}
     
@@ -22,7 +21,7 @@ def run_phase_1():
     ]
 
     # Search paths in order of priority
-    search_locations = [".", "data/raw", "../data/raw"]
+    search_locations = ["Datasets Compressed", ".", "data/raw", "../data/raw"]
 
     for file in uploaded_files:
         found_path = None
@@ -48,10 +47,9 @@ def run_phase_1():
             # We don't error out here, just warn, so the rest can load
             print(f"⚠️  Skipping: File not found in any standard location.")
 
-    print("\n" + "="*45)
     print(f"   PHASE 1 COMPLETE: {len(datasets)} datasets ready.")
-    print("="*45)
     return datasets
 
 if __name__ == "__main__":
     raw_datasets = run_phase_1()
+

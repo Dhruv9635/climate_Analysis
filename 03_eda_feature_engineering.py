@@ -12,11 +12,10 @@ import warnings
 warnings.filterwarnings("ignore")
 
 def run_phase_3():
-    print("\n" + "="*50)
-    print("\033[1m   PHASE 3: EDA & FEATURE ENGINEERING STARTED\033[0m")
-    print("="*50)
 
-    input_path = "data/processed/climate_cleaned.csv"
+    print("\033[1m   PHASE 3: EDA & FEATURE ENGINEERING STARTED\033[0m")
+
+    input_path = "Datasets Compressed/processed/climate_cleaned.csv"
     
     # Check if cleaned data exists
     if not os.path.exists(input_path):
@@ -34,9 +33,9 @@ def run_phase_3():
     global_df = df.groupby('Year')['Temp_Change'].mean().reset_index()
     global_df = global_df.sort_values('Year')
     
-    # ---------------------------------------------------------
+
     # FEATURE ENGINEERING
-    # ---------------------------------------------------------
+
     print("\nEngineering new features...")
     
     # A. Decade Labels
@@ -58,9 +57,8 @@ def run_phase_3():
     global_df.dropna(inplace=True)
     global_df.set_index('Year', inplace=True)
 
-    # ---------------------------------------------------------
     # EXPLORATORY DATA ANALYSIS (PLOTS)
-    # ---------------------------------------------------------
+
     print("\nGenerating and saving plots...")
     
     # Create output directory for plots
@@ -69,8 +67,8 @@ def run_phase_3():
 
     # Plot 1: Global Average Temperature Anomaly & Rolling Avg
     plt.figure(figsize=(12, 6))
-    plt.plot(global_df.index, global_df['Temp_Change'], label='Yearly Avg Temp Change', color='lightblue', marker='o', markersize=4)
-    plt.plot(global_df.index, global_df['Rolling_10Yr_Avg'], label='10-Year Rolling Avg', color='red', linewidth=2)
+    plt.plot(global_df.index, global_df['Temp_Change'], label='Yearly Avg Temp Change', color='black', marker='o', markersize=4)
+    plt.plot(global_df.index, global_df['Rolling_10Yr_Avg'], label='10-Year Rolling Avg', color='blue', linewidth=2)
     plt.title('Global Average Temperature Anomaly (with 10-Yr Trend)', fontsize=14, fontweight='bold')
     plt.xlabel('Year', fontsize=12)
     plt.ylabel('Temperature Change (°C)', fontsize=12)
@@ -101,9 +99,9 @@ def run_phase_3():
     
     print(f"✅ Plots saved successfully in '{plot_dir}/'")
 
-    # ---------------------------------------------------------
+
     # SCALING & PREPARATION FOR ML
-    # ---------------------------------------------------------
+
     print("\nScaling features for Machine Learning...")
     features_to_scale = ['Rolling_10Yr_Avg', 'YoY_Change', 'CO2_Proxy_ppm']
     
@@ -112,13 +110,12 @@ def run_phase_3():
     global_df_scaled[features_to_scale] = scaler.fit_transform(global_df[features_to_scale])
     
     # Save the engineered dataset
-    output_path = "data/processed/global_climate_engineered.csv"
+    output_path = "Datasets Compressed/processed/global_climate_engineered.csv"
     global_df_scaled.to_csv(output_path)
     print(f"💾 Engineered data saved to: {output_path}")
 
-    # ---------------------------------------------------------
     # FEATURE IMPORTANCE PREVIEW
-    # ---------------------------------------------------------
+
     print("\nCalculating Feature Importance Preview (using Random Forest)...")
     X = global_df_scaled[['Rolling_10Yr_Avg', 'YoY_Change', 'CO2_Proxy_ppm', 'Decade']]
     y = global_df_scaled['Temp_Change']
@@ -133,9 +130,8 @@ def run_phase_3():
     
     print("\n" + importances.to_string(index=False))
 
-    print("\n" + "="*50)
     print("   PHASE 3 COMPLETE")
-    print("="*50)
+
 
 if __name__ == "__main__":
     run_phase_3()

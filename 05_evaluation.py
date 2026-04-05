@@ -5,12 +5,12 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score, m
 import os
 
 def run_phase_5():
-    print("\n" + "="*50)
+
     print("\033[1m   PHASE 5: MODEL EVALUATION STARTED\033[0m")
-    print("="*50)
+
 
     # 1. Load the predictions generated in Phase 4
-    input_path = "data/processed/model_predictions.csv"
+    input_path = "Datasets Compressed/processed/model_predictions.csv"
     
     if not os.path.exists(input_path):
         print(f"❌ ERROR: {input_path} not found. Please run Phase 4 first.")
@@ -51,23 +51,23 @@ def run_phase_5():
     print(metrics_df.to_string())
     
     # Save metrics to CSV for the final report
-    metrics_df.to_csv("data/processed/model_evaluation_metrics.csv")
+    metrics_df.to_csv("Datasets Compressed/processed/model_evaluation_metrics.csv")
     
     # 4. Identify the Best Model (Based on Lowest RMSE)
     best_model_name = metrics_df['RMSE'].idxmin()
     best_rmse = metrics_df.loc[best_model_name, 'RMSE']
     
-    print("\n" + "*"*50)
+
     print(f"\033[1m 🏆 BEST PERFORMING MODEL: {best_model_name} \033[0m")
     print(f"    (Achieved the lowest RMSE of {best_rmse})")
-    print("*"*50)
+
 
     # 5. Plot Bar Chart comparing RMSE
     print("\nGenerating RMSE comparison chart...")
     plt.figure(figsize=(10, 6))
     
     # Create bars, highlight the best model in green
-    colors = ['green' if model == best_model_name else 'royalblue' for model in metrics_df.index]
+    colors = ['purple' if model == best_model_name else 'red' for model in metrics_df.index]
     bars = plt.bar(metrics_df.index, metrics_df['RMSE'], color=colors, edgecolor='black', alpha=0.8)
     
     # Add exact values on top of the bars
@@ -88,9 +88,9 @@ def run_phase_5():
     
     print(f"✅ Comparison chart saved to {plot_path}")
 
-    print("\n" + "="*50)
+
     print("   PHASE 5 COMPLETE")
-    print("="*50)
+
 
 if __name__ == "__main__":
     run_phase_5()
